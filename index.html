@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090807">
+  <meta name="description" content="An educational student wellbeing score estimate based on lifestyle and daily habits.">
+  <title>Student Mental Health Score Predictor</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <p class="eyebrow">LEARN · REFLECT · RESET</p>
+      <h1>A small check-in<br>for <span>everyday wellbeing.</span></h1>
+      <p class="intro">Share a little about your routines to see how a student survey model scores a similar profile.</p>
+      <div class="hero-meta">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span id="api-status" role="status" aria-live="polite">Checking connection</span>
+        <span class="meta-divider" aria-hidden="true">·</span>
+        <span>Usually takes less than a minute</span>
+      </div>
+    </header>
+
+    <section class="panel" aria-labelledby="form-title">
+      <div class="panel-heading">
+        <div><p class="section-kicker">YOUR PROFILE</p><h2 id="form-title">A few everyday details</h2></div>
+        <span class="step">01 <span>/ 01</span></span>
+      </div>
+      <form id="predict-form">
+        <div class="form-grid">
+          <label class="field"><span>Age</span><input name="age" type="number" min="10" max="100" value="20" required></label>
+          <label class="field"><span>Gender</span><select name="gender" required><option>Female</option><option>Male</option></select></label>
+          <label class="field"><span>Country</span><input name="country" type="text" value="India" required></label>
+          <label class="field"><span>Academic level</span><select name="academic_level" required><option>High School</option><option selected>Undergraduate</option><option>Graduate</option></select></label>
+          <label class="field"><span>Most used platform</span><select name="most_used_platform" required><option>Instagram</option><option>TikTok</option><option>YouTube</option><option>WhatsApp</option><option>Facebook</option><option>Snapchat</option><option>Twitter</option><option>LinkedIn</option><option>LINE</option><option>KakaoTalk</option><option>VKontakte</option><option>WeChat</option></select></label>
+          <label class="field"><span>Main purpose</span><select name="purpose_of_use" required><option>Entertainment</option><option>Education</option><option>Networking</option><option>News</option></select></label>
+        </div>
+        <div class="section-rule"><span>DAILY ROUTINE</span></div>
+        <div class="form-grid">
+          <label class="field"><span>Social media use <small>hours per day</small></span><input name="avg_daily_usage_hours" type="number" min="0" max="24" step="0.5" value="4" required></label>
+          <label class="field"><span>Phone unlocks <small>per day</small></span><input name="daily_unlocks" type="number" min="0" step="1" value="60" required></label>
+          <label class="field"><span>Study time <small>hours per day</small></span><input name="study_hours" type="number" min="0" max="24" step="0.5" value="3" required></label>
+          <label class="field"><span>Physical activity <small>hours per day</small></span><input name="physical_activity_hours" type="number" min="0" max="24" step="0.5" value="1" required></label>
+          <label class="field"><span>Sleep <small>hours per night</small></span><input name="sleep_hours_per_night" type="number" min="0" max="24" step="0.5" value="7" required></label>
+          <fieldset class="field stress-field"><legend>Stress level</legend><div class="choices">
+            <label><input type="radio" name="stress_level" value="Low"><span>Low</span></label>
+            <label><input type="radio" name="stress_level" value="Medium" checked><span>Medium</span></label>
+            <label><input type="radio" name="stress_level" value="High"><span>High</span></label>
+            <label><input type="radio" name="stress_level" value="Very High"><span>Very high</span></label>
+          </div></fieldset>
+        </div>
+        <div id="message" class="message" role="alert" hidden></div>
+        <div class="actions"><button class="submit" id="submit" type="submit"><span>Get my estimate</span><span aria-hidden="true">→</span></button><p class="privacy-note">Your answers are sent to the prediction API to calculate this estimate.</p></div>
+      </form>
+    </section>
+    <section class="result-card" id="result" aria-live="polite" aria-labelledby="result-title">
+      <div class="result-label"><span class="result-mark" aria-hidden="true">✳</span> YOUR ESTIMATE</div>
+      <div class="score-row"><strong id="score">—</strong><span>/ 10</span></div>
+      <h2 id="result-title">Ready when you are</h2>
+      <p id="result-copy">Complete the form to see the model’s estimate.</p>
+    </section>
+    <footer><span>Made for learning and reflection.</span><span>This is not a medical or diagnostic tool.</span></footer>
+  </main>
+</body>
+</html>
