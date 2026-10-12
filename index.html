@@ -7,6 +7,12 @@
   <meta name="description" content="An educational student wellbeing score estimate based on lifestyle and daily habits.">
   <title>Student Mental Health Score Predictor</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .support-prompt{margin-top:22px;border:1px solid rgba(255,129,94,.35);border-radius:12px;padding:20px;background:rgba(255,81,43,.06)}
+    .support-prompt h3{margin:8px 0 6px;font-size:1.1rem}
+    .support-prompt>p:not(.section-kicker){max-width:720px;margin:0 0 14px;color:var(--muted)}
+    .support-link{display:inline-flex;gap:10px;color:var(--orange-soft);font-weight:700;text-decoration:none}.support-link:hover{color:#fff}
+  </style>
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -69,5 +75,13 @@
     </section>
     <footer><span>Made for learning and reflection.</span><span>This is not a medical or diagnostic tool.</span></footer>
   </main>
+  <script>
+    const scoreNode = document.querySelector("#score");
+    const supportPrompt = document.querySelector("#low-score-support");
+    new MutationObserver(() => {
+      const value = Number(scoreNode.textContent);
+      supportPrompt.hidden = !Number.isFinite(value) || value >= 6;
+    }).observe(scoreNode, { childList: true, characterData: true, subtree: true });
+  </script>
 </body>
 </html>
