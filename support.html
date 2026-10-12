@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090807">
+  <meta name="description" content="A clearly labeled project demo of a student support package interface.">
+  <title>Support Package Demo · Student Wellbeing Project</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .support-shell{max-width:880px}.back-link{display:inline-block;margin-bottom:30px;color:var(--muted);text-decoration:none}.back-link:hover{color:var(--text)}
+    .support-hero{padding-bottom:25px}.support-hero h1{font-size:clamp(2.5rem,6vw,4rem)}
+    .offer-card,.chat-preview{border:1px solid var(--line);border-radius:16px;padding:clamp(22px,4vw,34px);background:var(--surface)}
+    .offer-topline{display:flex;align-items:center;justify-content:space-between;gap:12px}.demo-tag{border:1px solid rgba(255,129,94,.4);border-radius:999px;padding:5px 10px;color:var(--orange-soft);font-size:.76rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+    .offer-card h2,.chat-preview h2{margin:10px 0 4px;font-size:clamp(1.4rem,3vw,1.8rem)}.offer-description,.chat-caption{margin:0;color:var(--muted)}
+    .demo-price{margin:24px 0 18px}.demo-price>span,.demo-price small{display:block;color:var(--dim);font-size:.85rem}.demo-price p{margin:3px 0;display:flex;align-items:baseline;gap:12px}.demo-price s{color:var(--dim);font-size:1.15rem}.demo-price strong{color:var(--orange-soft);font-size:2.3rem;letter-spacing:-.04em}
+    .package-details{margin:20px 0;padding-left:22px;color:var(--text)}.package-details li+li{margin-top:8px}.demo-notice{display:grid;gap:4px;border:1px solid #40332d;border-radius:10px;padding:14px;color:var(--muted);background:#0d0b0a;font-size:.9rem}.demo-notice strong{color:var(--text)}
+    .demo-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}.demo-button{width:auto}.secondary-button{min-height:50px;border:1px solid #544037;border-radius:10px;padding:0 20px;color:var(--text);background:transparent;font-weight:700;cursor:pointer}.secondary-button:hover{border-color:var(--orange)}.demo-feedback{margin:14px 0 0;color:var(--orange-soft)}
+    .chat-preview{margin-top:18px;display:grid;grid-template-columns:1fr 1.1fr;gap:28px;align-items:center}.chat-window{display:grid;gap:10px;padding:16px;border:1px solid #30241f;border-radius:12px;background:#0d0b0a}.chat-bubble{max-width:88%;border-radius:12px 12px 12px 3px;padding:10px 12px;color:var(--text);background:#211914;font-size:.9rem}.chat-bubble.visitor{justify-self:end;border-radius:12px 12px 3px 12px;color:#fff;background:#7c321d}
+    .safety-note{margin:18px 2px;color:var(--dim);font-size:.84rem}@media(max-width:650px){.chat-preview{grid-template-columns:1fr}.demo-actions{align-items:stretch;flex-direction:column}.demo-button{width:100%}}
+  </style>
+</head>
+<body>
+  <main class="shell support-shell">
+    <a class="back-link" href="index.html">← Back to the score predictor</a>
+    <header class="hero support-hero">
+      <p class="eyebrow">PROJECT PROTOTYPE</p>
+      <h1>A listening session<br>for <span>when you need one.</span></h1>
+      <p class="intro">This page demonstrates how an optional support package could look in the student wellbeing project.</p>
+    </header>
+    <section class="offer-card" aria-labelledby="offer-title">
+      <div class="offer-topline"><p class="section-kicker">SAMPLE PACKAGE</p><span class="demo-tag">Demo only</span></div>
+      <h2 id="offer-title">Talk &amp; Connect</h2>
+      <p class="offer-description">A sample one-to-one conversation where someone can share what has been on their mind.</p>
+      <div class="demo-price" aria-label="Sample project pricing, not a real offer"><span>Example price</span><p><s>₹2,500</s> <strong>₹499</strong></p><small>Illustrative project pricing — not a real discount or payment offer.</small></div>
+      <ul class="package-details"><li>One 60-minute call</li><li>One in-app chat of up to 30 minutes, if needed</li></ul>
+      <div class="demo-notice" role="note"><strong>Project demo, not a live support service.</strong><span>No payment, call, or live chat is available here. This project is not counseling, therapy, diagnosis, or emergency care. Please don’t share personal or sensitive information on this demo page.</span></div>
+      <div class="demo-actions"><button class="submit demo-button" type="button" data-demo="chat">Preview chat option <span aria-hidden="true">→</span></button><button class="secondary-button demo-button" type="button" data-demo="call">Preview call option</button></div>
+      <p class="demo-feedback" id="demo-feedback" role="status" aria-live="polite" hidden></p>
+    </section>
+    <section class="chat-preview" aria-labelledby="chat-title"><div><p class="section-kicker">ILLUSTRATIVE ONLY</p><h2 id="chat-title">A sample in-app chat</h2><p class="chat-caption">Example messages demonstrate the idea. This is not monitored and does not send messages.</p></div><div class="chat-window" aria-label="Static sample chat"><div class="chat-bubble">Hi, I’m here to listen. What would you like to talk about?</div><div class="chat-bubble visitor">I’ve had a lot on my mind lately.</div><div class="chat-bubble">Thanks for sharing. This sample chat isn’t connected to a person.</div></div></section>
+    <p class="safety-note">A score from this project is only a model estimate. It cannot tell you whether you need help. If you need support, consider speaking with someone you trust or a qualified mental-health professional. For urgent danger, contact local emergency services.</p>
+    <footer><span>Made for learning and reflection.</span><span>This is not a medical or diagnostic tool.</span></footer>
+  </main>
+  <script>
+    const feedback = document.querySelector("#demo-feedback");
+    document.querySelectorAll("[data-demo]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const option = button.dataset.demo === "chat" ? "chat" : "call";
+        feedback.textContent = "Demo only: the " + option + " option is a visual prototype. It does not connect to anyone or place a call.";
+        feedback.hidden = false;
+      });
+    });
+  </script>
+</body>
+</html>
